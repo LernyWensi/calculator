@@ -1,0 +1,146 @@
+:root {
+    --color-primary-100: #000000;
+    --color-primary-200: #111111;
+    --color-primary-300: #353535;
+    --color-primary-400: #202020;
+    --color-secondary-100: #fafafa;
+    --color-accent-100: #b4a4d6;
+    --color-red-100: #ed3e42;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', system-ui;
+    color: var(--color-secondary-100);
+    background-color: var(--color-primary-100);
+}
+
+menu {
+    list-style: none;
+}
+
+button {
+    font: inherit;
+}
+
+.calculator {
+    padding: 0.4rem;
+    width: 18.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    text-wrap: nowrap;
+    gap: 0.4rem;
+}
+
+.display-buffer {
+    color: var(--color-secondary-100);
+}
+
+.display-expression {
+    color: var(--color-primary-300);
+}
+
+.display-buffer,
+.display-expression {
+    width: 100%;
+    height: 2.7rem;
+    text-align: end;
+    font-size: 2rem;
+    overflow: auto hidden;
+
+    &::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-accent-100);
+        border-radius: 0.3rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--color-primary-300);
+        border-radius: 0.3rem;
+    }
+}
+
+.buttons {
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 4rem;
+    gap: 0.4rem;
+}
+
+.button {
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    color: var(--color-secondary-100);
+    background-color: var(--color-primary-400);
+    border-radius: 0.3em;
+    border: 0.1rem solid var(--color-primary-300);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: var(--color-accent-100);
+    }
+
+    &:focus-visible {
+        outline: 0.15rem dashed var(--color-accent-100);
+        outline-offset: 0.15em;
+        z-index: 1;
+    }
+
+    &.calculate {
+        background-color: var(--color-accent-100);
+    }
+
+    &.secondary {
+        background-color: var(--color-primary-200);
+    }
+
+    &.deletion {
+        color: var(--color-red-100);
+    }
+
+    &:disabled {
+        filter: brightness(0.6) grayscale(0.8);
+    }
+}
+
+@media (width < 500px) {
+    html {
+        font-size: 120%;
+    }
+
+    .calculator {
+        width: 100%;
+        height: 100%;
+        align-self: end;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 10vh;
+    }
+}
